@@ -14,6 +14,7 @@ function createGallery(galleryItems) {
   <a class="gallery__link" href="${original}">
     <img
       class="gallery__image"
+      rel="lightbox"
       src="${preview}"
       data-source="${original}"
       alt="${description}"
