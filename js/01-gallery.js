@@ -29,7 +29,9 @@ imageConteiner.addEventListener('click', onClickImage);
 
 function onClickImage(evt) {
     evt.preventDefault()
-    console.log(evt.target);
-  const instance = 	basicLightbox.create(imageMarkup).show()
+
+    console.dir(evt.target);
+    const instance = basicLightbox.create(`<img scr="${evt.target.dataset.source}"/>`).show()
+    console.log(evt.target.dataset.source);
     
 }
