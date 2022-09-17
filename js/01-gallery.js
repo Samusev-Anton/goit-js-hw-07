@@ -29,9 +29,23 @@ imageConteiner.addEventListener('click', onClickImage);
 
 function onClickImage(evt) {
     evt.preventDefault()
+    if (evt.target.nodeName !== "IMG") {
+        return;
+    }
+    const clickImg = evt.target.dataset.source;
+    // console.dir(evt.target);
+    const instance = basicLightbox.create(`<img src = "${clickImg}" />`,     {
+        onShow: (instance) => { window.addEventListener("keydown", keyClose) },
+        onClose: (instance) => { window.removeEventListener("keydown", keyClose) },
+    }
+);
+    // console.log(evt.target.dataset.source);
+    instance.show();
 
-    console.dir(evt.target);
-    const instance = basicLightbox.create(`<img scr="${evt.target.dataset.source}"/>`).show()
-    console.log(evt.target.dataset.source);
-    
+    function keyClose(evt) {
+    if (evt.code === "Escape") {
+        instance.close();
+    }
+
+} 
 }
